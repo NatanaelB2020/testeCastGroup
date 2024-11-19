@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Usuário - Transações</title>
+</head>
+<body>
+<h1>Operações Bancárias</h1>
+
+<h2>Creditar</h2>
+<form th:action="@{/contas/usuario/creditar}" method="post">
+    <label>Conta Destino: </label>
+    <input type="text" th:field="*{numeroContaDestino}" required/>
+    <label>Valor: </label>
+    <input type="number" th:field="*{valor}" step="0.01" required/>
+    <button type="submit">Creditar</button>
+</form>
+
+<h2>Debitar</h2>
+<form th:action="@{/contas/usuario/debitar}" method="post">
+    <label>Conta Origem: </label>
+    <input type="text" th:field="*{numeroContaOrigem}" required/>
+    <label>Valor: </label>
+    <input type="number" th:field="*{valor}" step="0.01" required/>
+    <button type="submit">Debitar</button>
+</form>
+
+<h2>Transferir</h2>
+<form th:action="@{/contas/usuario/transferir}" method="post">
+    <label>Conta Origem: </label>
+    <input type="text" th:field="*{numeroContaOrigem}" required/>
+    <label>Conta Destino: </label>
+    <input type="text" th:field="*{numeroContaDestino}" required/>
+    <label>Valor: </label>
+    <input type="number" th:field="*{valor}" step="0.01" required/>
+    <button type="submit">Transferir</button>
+</form>
+
+<h2>Contas Disponíveis</h2>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Número da Conta</th>
+            <th>Saldo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="conta : ${contas}">
+            <td th:text="${conta.id}"></td>
+            <td th:text="${conta.numeroConta}"></td>
+            <td th:text="${conta.saldo}"></td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>

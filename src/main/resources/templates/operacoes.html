@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Operações do Usuário</title>
+</head>
+<body>
+    <h1>Operações Disponíveis</h1>
+
+    <h2>Contas</h2>
+    <ul>
+        <li th:each="conta : ${contas}">
+            <span th:text="${conta.nome}">Nome da Conta</span> - 
+            <span th:text="${conta.saldo}">Saldo</span>
+        </li>
+    </ul>
+
+    <a href="/contas/usuario/creditar">Creditar</a><br>
+    <a href="/contas/usuario/debitar">Debitar</a><br>
+    <a href="/contas/usuario/transferir">Transferir</a><br>
+</body>
+</html>

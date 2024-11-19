@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin - Criar Contas</title>
+</head>
+<body>
+<h1>Administração Bancária</h1>
+
+<h2>Criar Conta</h2>
+<form th:action="@{/contas/admin/criar-conta}" method="post" th:object="${contaEntity}">
+    <label>Número da Conta: </label>
+    <input type="text" th:field="*{numeroConta}" required/>
+    <label>Saldo Inicial: </label>
+    <input type="number" th:field="*{saldo}" step="0.01" required/>
+    <button type="submit">Criar Conta</button>
+</form>
+
+<h2>Contas Cadastradas</h2>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Número da Conta</th>
+            <th>Saldo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="conta : ${contas}">
+            <td th:text="${conta.id}"></td>
+            <td th:text="${conta.numeroConta}"></td>
+            <td th:text="${conta.saldo}"></td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>
